@@ -12,13 +12,13 @@ function Counter(props) {
     return (
         <div>
             <h1 data-testid="counterLabel">Current Value {props.currentCounter}</h1>
-            <button onClick={props.increment}>
+            <button data-testid="incrementBtn" onClick={props.increment}>
                 Increment By 1
             </button>
-            <button onClick={props.decrement}>
+            <button data-testid="decrementBtn" onClick={props.decrement}>
                 Decrement By 1
             </button>
-            <button onClick={navigateToUserPage}>
+            <button data-testid="navigateToUser" onClick={navigateToUserPage}>
                 Go to User Page
             </button>
         </div>
