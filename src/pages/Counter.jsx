@@ -1,9 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { increment, incrementBy, decrement } from '../store/action-reducers/counter';
-import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 
 function Counter(props) {
+    const dispatch = useDispatch();
     const navigateToUserPage = () => {
         props.history.push({
             path: `/users?userId=${props.currentCounter}`
@@ -12,7 +13,7 @@ function Counter(props) {
     return (
         <div>
             <h1 data-testid="counterLabel">Current Value {props.currentCounter}</h1>
-            <button data-testid="incrementBtn" onClick={props.increment}>
+            <button data-testid="incrementBtn" onClick={() => dispatch(increment())}>
                 Increment By 1
             </button>
             <button data-testid="decrementBtn" onClick={props.decrement}>
@@ -31,4 +32,11 @@ const mapStateToProps = state => {
     };
 };
 
-export default withRouter(connect(mapStateToProps, { increment, decrement, incrementBy })(Counter));
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        increment,
+        decrement
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, null)(Counter);

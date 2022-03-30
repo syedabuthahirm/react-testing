@@ -9,8 +9,12 @@ function App() {
     <div>
       <Header />
       <Switch>
-        <Route path="/" element={<Counter />} />
-        <Route path="/users" element={<User />} />
+        <Route exact path="/">
+          <Counter />
+        </Route>
+        <Route path="/users">
+          <User />
+        </Route>
       </Switch>
     </div>
   );
