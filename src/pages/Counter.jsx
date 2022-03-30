@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { increment, incrementBy, decrement } from '../store/action-reducers/counter';
-import { useNavigate } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 function Counter(props) {
-    let navigate = useNavigate();
     const navigateToUserPage = () => {
-        navigate(`/users?userId=${props.currentCounter}`);
+        props.history.push({
+            path: `/users?userId=${props.currentCounter}`
+        });
     }
     return (
         <div>
@@ -30,4 +31,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { increment, decrement, incrementBy })(Counter);
+export default withRouter(connect(mapStateToProps, { increment, decrement, incrementBy })(Counter));

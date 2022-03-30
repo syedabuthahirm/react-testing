@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Counter from './pages/Counter';
 import User from './pages/User';
@@ -8,10 +8,10 @@ function App() {
   return (
     <div>
       <Header />
-      <Routes>
+      <Switch>
         <Route path="/" element={<Counter />} />
         <Route path="/users" element={<User />} />
-      </Routes>
+      </Switch>
     </div>
   );
 }
